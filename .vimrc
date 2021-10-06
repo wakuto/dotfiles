@@ -127,7 +127,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-nnoremap <F5> :UndotreeToggle<cr>
+nnoremap <F5> <Cmd>UndotreeToggle<CR>
 
 set termguicolors
 colorscheme material
@@ -142,6 +142,9 @@ nnoremap sl <C-w>l
 
 " asyncomplete.vim
 let g:asyncomplete_auto_popup = 0
+nnoremap <C-S-]> <Cmd>LspDefinition<CR>
+nnoremap <C-]> <Cmd>LspPeekDefinition<CR>
+nnoremap <silent> <TAB> <Cmd>LspHover<CR>
 
 function! s:check_back_space() abort
   let col = col('.') - 1
