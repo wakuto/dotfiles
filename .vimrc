@@ -15,6 +15,9 @@ set belloff=all
 " シンタックスを有効化
 syntax on
 
+" esc map
+inoremap jj <ESC>
+
 set ambiwidth=double
 " タブをスペースに変換
 set expandtab
