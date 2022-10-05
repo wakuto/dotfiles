@@ -1,7 +1,7 @@
 {
   "suggest.noselect": true,
   "suggest.preferCompleteThanJumpPlaceholder": true,
-  "coc.preferences.formatOnSaveFiletypes": ["c", "cpp", "rust", "python"],
+  "coc.preferences.formatOnSaveFiletypes": ["c", "cpp", "rust", "python", "json", "systemverilog"],
   "languageserver": {
     "clangd": {
       "command": "clangd",
@@ -19,6 +19,17 @@
       "command": "bash-language-server",
       "args": ["start"],
       "filetypes": ["sh"]
+    },
+    "svlangserver": {
+      "command": "svlangserver",
+      "filetypes": ["systemverilog"],
+      "settings": {
+        "systemverilog.includeIndexing": ["**/*.{sv,svh}"],
+        "systemverilog.excludeIndexing": ["test/**/*.sv*"],
+        "systemverilog.defines" : [],
+        "systemverilog.launchConfiguration": "verilator -sv -Wall --lint-only",
+        "systemverilog.formatCommand": "verible-verilog-format"
+      }
     }
   }
 }
