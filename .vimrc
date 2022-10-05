@@ -5,11 +5,15 @@ endif
 " 行番号を表示
 set number
 
+" 折り返しなし
+set nowrap
+
 " ベルをオフ
 set belloff=all
 
 if !exists('g:vscode')
-  set ambiwidth=double
+  " coc.nvimの表示がバグるため一時的にOFF
+  " set ambiwidth=double
 endif
 
 " インデント関連
@@ -43,6 +47,25 @@ set autoread
 
 set cursorline      " 現在の行をハイライト
 hi clear CursorLine " 上と合わせることで行番号のみハイライト
+
+" cdコマンドの設定---------
+" https://vim-jp.org/vim-users-jp/2009/09/08/Hack-69.html
+command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
+function! s:ChangeCurrentDir(directory, bang)
+    if a:directory == ''
+        lcd %:p:h
+    else
+        execute 'lcd' . a:directory
+    endif
+
+    if a:bang == ''
+        pwd
+    endif
+endfunction
+
+" Change current directory.
+nnoremap <silent> <Space>cd :<C-u>CD<CR>
+"--------------------------
 
 " undoファイルの設定
 try 
@@ -112,7 +135,8 @@ nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 
 " 色設定
-colorscheme material
+" colorscheme material
+colorscheme desert
 syntax on
 
 " coc settings------------
@@ -130,5 +154,7 @@ if !exists('g:vscode')
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<Tab>" :
         \ coc#refresh()
+
+  nnoremap <F6> <Plug>(coc-rename)
 endif
 " ------------------------
