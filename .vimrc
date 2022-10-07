@@ -41,6 +41,9 @@ set noswapfile
 " 編集中のファイルが変更されたら自動で読み直す
 set autoread
 
+" vimdiff setting
+" set diffopt=vert
+
 set cursorline      " 現在の行をハイライト
 hi clear CursorLine " 上と合わせることで行番号のみハイライト
 
