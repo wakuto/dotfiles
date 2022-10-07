@@ -12,7 +12,8 @@
     "rust": {
       "command": "rust-analyzer",
       "filetypes": ["rust"],
-      "rootPatterns": ["Cargo.toml"]
+      "rootPatterns": ["Cargo.toml"],
+      "progressOnInitialization": false
     },
     "bash": {
       "command": "bash-language-server",
