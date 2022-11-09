@@ -111,7 +111,10 @@ call AddPlugin('https://github.com/terryma/vim-multiple-cursors.git')
 call AddPlugin('https://github.com/Yggdroot/indentLine.git')
 call AddPlugin('https://github.com/mbbill/undotree.git')
 if !exists('g:vscode')
-  call AddPlugin('https://github.com/neoclide/coc.nvim.git')
+  call AddPlugin('https://github.com/prabirshrestha/vim-lsp.git')
+  call AddPlugin('https://github.com/mattn/vim-lsp-settings.git')
+  call AddPlugin('https://github.com/prabirshrestha/asyncomplete.vim.git')
+  call AddPlugin('https://github.com/prabirshrestha/asyncomplete-lsp.vim.git')
 endif
 
 " キーマップ
@@ -135,11 +138,13 @@ nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 
 " 色設定
-" colorscheme material
-colorscheme desert
+colorscheme material
 syntax on
+if has('nvim')
+  set termguicolors
+endif
 
-" coc settings------------
+" vim-lsp settings------------
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -147,14 +152,6 @@ endfunction
 
 
 if !exists('g:vscode')
-  nnoremap <silent> <C-]> <Plug>(coc-definition)
-  " use <tab> for trigger completion and navigate to the next complete item
-
-  inoremap <silent><expr> <Tab>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<Tab>" :
-        \ coc#refresh()
-
-  nnoremap <F6> <Plug>(coc-rename)
+  nnoremap <silent> <C-]> <Plug>(lsp-peek-definition)
 endif
 " ------------------------
