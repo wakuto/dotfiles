@@ -156,5 +156,6 @@ endfunction
 
 if !exists('g:vscode')
   nnoremap <silent> <C-]> <Plug>(lsp-peek-definition)
+  nnoremap <Space><Space> <Plug>(lsp-document-format)
 endif
 " ------------------------
