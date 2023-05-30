@@ -142,6 +142,12 @@ nnoremap sl <C-w>l
 
 " 色設定
 colorscheme material
+" 背景の透明化
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
+
 syntax on
 if has('nvim')
   set termguicolors
@@ -153,9 +159,19 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
+augroup LspSatysfi
+  autocmd!
+  autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'satysfi-ls',
+    \ 'cmd': {server_info->['satysfi-language-server']},
+    \ 'allowlist': ['satysfi'],
+    \ })
+augroup END
 
 if !exists('g:vscode')
   nnoremap <silent> <C-]> <Plug>(lsp-peek-definition)
   nnoremap <Space><Space> <Plug>(lsp-document-format)
+  let g:lsp_inlay_hints_enabled = 1
 endif
 " ------------------------
+
