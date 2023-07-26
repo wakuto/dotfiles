@@ -118,6 +118,7 @@ if !exists('g:vscode')
   call AddPlugin('https://github.com/mattn/vim-lsp-settings.git')
   call AddPlugin('https://github.com/prabirshrestha/asyncomplete.vim.git')
   call AddPlugin('https://github.com/prabirshrestha/asyncomplete-lsp.vim.git')
+  call AddPlugin('https://github.com/github/copilot.vim.git')
 endif
 
 " キーマップ
